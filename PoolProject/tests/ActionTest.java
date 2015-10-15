@@ -84,6 +84,43 @@ public class ActionTest {
 		}
 		assertTrue(action2.isFinished());
 		assertTrue(action3.isFinished());
-
+	}
+	
+	@Test
+	public void schedulerWithSchedulerTest() {
+		Action action = new ForeseeableAction(2);
+		Scheduler scheduler = new Scheduler();
+		Scheduler subScheduler = new Scheduler();
+		
+		subScheduler.addAction(action);
+		scheduler.addAction(subScheduler);
+		
+		assertTrue(action.isReady());
+		assertTrue(subScheduler.isReady());
+		assertTrue(scheduler.isReady());
+		
+		try {
+			scheduler.doStep();
+		} catch (ActionAlreadyFinishedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(action.isInProgress());
+		assertTrue(subScheduler.isInProgress());
+		assertTrue(scheduler.isInProgress());
+		
+		try {
+			scheduler.doStep();
+		} catch (ActionAlreadyFinishedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertTrue(action.isFinished());
+		assertTrue(subScheduler.isFinished());
+		assertTrue(scheduler.isFinished());
+		
+		
 	}
 }

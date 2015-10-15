@@ -7,7 +7,7 @@ public class Scheduler extends Action {
 
 	@Override
 	public boolean isReady() {
-		return ((this.schedulerActions.size() > 0)&&(this.schedulerActions.get(0).isReady()));
+		return ((this.schedulerActions.size() > 0) && (this.schedulerActions.get(0).isReady()));
 	}
 
 	@Override
