@@ -123,4 +123,37 @@ public class ActionTest {
 		
 		
 	}
+	
+	@Test
+	public void onlyOneValidStateAtEachMomentForForeseeableAction() {
+		onlyOneValidStateAtEachMoment(new ForeseeableAction(10));
+	}
+
+	
+	@Test
+	public void onlyOneValidStateAtEachMomentForScheduler() {
+		Scheduler sched = new Scheduler();
+		sched.addAction(new ForeseeableAction(2));
+		onlyOneValidStateAtEachMoment(sched);
+	}
+	
+	protected void onlyOneValidStateAtEachMoment(Action eAction) {
+		assertTrue(eAction.isReady());
+		assertFalse(eAction.isInProgress());
+		assertFalse(eAction.isFinished());
+		
+		while(!eAction.isFinished()) {
+			try {
+				eAction.doStep();
+			} catch (ActionAlreadyFinishedException e) {
+				e.printStackTrace();
+			}
+			assertFalse(eAction.isReady());
+			assertTrue(eAction.isFinished() == !eAction.isInProgress());
+		}
+		assertFalse(eAction.isReady());
+		assertFalse(eAction.isInProgress());
+		assertTrue(eAction.isFinished());
+		
+	}
 }
