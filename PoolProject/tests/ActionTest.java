@@ -3,132 +3,87 @@ import lille1.pool.exception.ActionAlreadyFinishedException;
 
 import org.junit.Test;
 
-
 public class ActionTest {
-	private Scheduler createScheduler(int timeToEnd) {
-		return new Scheduler(timeToEnd);
-	}
 
 	@Test
-	public void foreseeableAction() {
-		Action action = createScheduler(2);
-		// 2 steps remaining
-		assertTrue(action.isReady());
-		assertFalse(action.isInProgress());
+	public void foreseeableActionTest() {
+		Action action = new ForeseeableAction(2);
+
 		assertFalse(action.isFinished());
+		assertFalse(action.isInProgress());
+		assertTrue(action.isReady());
+
 		try {
 			action.doStep();
 		} catch (ActionAlreadyFinishedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// 1 step remaining
-		assertFalse(action.isReady());
+
+		assertFalse(action.isFinished());
 		assertTrue(action.isInProgress());
-		assertFalse(action.isFinished());
+		assertFalse(action.isReady());
+
 		try {
 			action.doStep();
 		} catch (ActionAlreadyFinishedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// 0 step remaining
-		assertFalse(action.isReady());
-		assertFalse(action.isInProgress());
+
 		assertTrue(action.isFinished());
+		assertFalse(action.isInProgress());
+		assertFalse(action.isReady());
+
 	}
 
 	@Test
-	public void scheduler() {
-		Scheduler Scheduler1 = createScheduler(2);
-		Scheduler Scheduler2 = createScheduler(1);
-		Scheduler scheduler = createScheduler(0);
-		scheduler.addAction(Scheduler1);
-		scheduler.addAction(Scheduler2);
-		assertTrue(Scheduler1.isReady());
-		assertTrue(Scheduler2.isReady());
-		try {
-			scheduler.doStep();
-		} catch (ActionAlreadyFinishedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		assertTrue(Scheduler1.isInProgress());
-		assertTrue(Scheduler2.isReady());
-		try {
-			scheduler.doStep();
-		} catch (ActionAlreadyFinishedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		assertTrue(Scheduler1.isFinished());
-		assertTrue(Scheduler2.isReady());
-		try {
-			scheduler.doStep();
-		} catch (ActionAlreadyFinishedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		assertTrue(Scheduler1.isFinished());
-		assertTrue(Scheduler2.isFinished());
-	}
+	public void actionSchedulerTest() {
+		Action action = new ForeseeableAction(2);
+		Action action2 = new ForeseeableAction(2);
+		Action action3 = new Scheduler();
 
-	@Test
-	public void schedulerWithScheduler() {
-		Scheduler Scheduler1 = createScheduler(2);
-		Scheduler subScheduler = createScheduler(0);
-		Scheduler scheduler = createScheduler(0);
-		subScheduler.addAction(Scheduler1);
-		scheduler.addAction(subScheduler);
-		assertTrue(Scheduler1.isReady());
-		assertTrue(subScheduler.isReady());
-		try {
-			scheduler.doStep();
-		} catch (ActionAlreadyFinishedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		assertTrue(Scheduler1.isInProgress());
-		assertTrue(subScheduler.isInProgress());
-		try {
-			scheduler.doStep();
-		} catch (ActionAlreadyFinishedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		assertTrue(Scheduler1.isFinished());
-		assertTrue(subScheduler.isFinished());
-	}
+		Scheduler sched = (Scheduler) action3;
 
-	@Test
-	public void onlyOneValidStateAtEachMomentForForeseebleAction() {
-		onlyOneValidStateAtEachMoment(createScheduler(10));
-	}
+		sched.addAction(action);
+		sched.addAction(action2);
 
-	@Test
-	public void onlyOneValidStateAtEachMomentForScheduler() {
-		Scheduler scheduler = createScheduler(0);
-		scheduler.addAction(createScheduler(1));
-		onlyOneValidStateAtEachMoment(scheduler);
-	}
-
-	protected void onlyOneValidStateAtEachMoment(Action action) {
 		assertTrue(action.isReady());
-		assertFalse(action.isInProgress());
-		assertFalse(action.isFinished());
-		while (!action.isFinished()) {
-			try {
-				action.doStep();
-			} catch (ActionAlreadyFinishedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			assertFalse(action.isReady());
-			// isFinished xor isInProgress
-			assertTrue(action.isFinished() == !action.isInProgress());
+		assertTrue(action2.isReady());
+		assertTrue(sched.isReady());
+
+		try {
+			action3.doStep();
+		} catch (ActionAlreadyFinishedException e) {
+			e.printStackTrace();
 		}
-		assertFalse(action.isReady());
-		assertFalse(action.isInProgress());
+
+		assertTrue(action.isInProgress());
+		assertTrue(action2.isReady());
+		assertTrue(action3.isInProgress());
+
+		try {
+			action3.doStep();
+		} catch (ActionAlreadyFinishedException e1) {
+			e1.printStackTrace();
+		}
 		assertTrue(action.isFinished());
+		assertTrue(action2.isReady());
+		assertTrue(action3.isInProgress());
+
+		try {
+			action3.doStep();
+		} catch (ActionAlreadyFinishedException e) {
+			e.printStackTrace();
+		}
+		assertTrue(action2.isInProgress());
+		assertTrue(action3.isInProgress());
+
+		try {
+			action3.doStep();
+		} catch (ActionAlreadyFinishedException e) {
+			e.printStackTrace();
+		}
+		assertTrue(action2.isFinished());
+		assertTrue(action3.isFinished());
+
 	}
 }

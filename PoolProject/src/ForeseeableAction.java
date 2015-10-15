@@ -1,21 +1,27 @@
 public class ForeseeableAction extends Action {
 
+	private final int baseTime;
+	private int timeRemaining;
+
+	public ForeseeableAction(int eBaseTime) {
+		this.baseTime = eBaseTime;
+		this.timeRemaining = eBaseTime;
+	}
+
 	@Override
 	public boolean isReady() {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.baseTime==this.timeRemaining);
 	}
 
 	@Override
 	public boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.timeRemaining==0);
 	}
 
 	@Override
 	public void reallyDoStep() {
-		// TODO Auto-generated method stub
-
+		if(!(this.isFinished())) this.timeRemaining--; 
+		return;
 	}
 
 }

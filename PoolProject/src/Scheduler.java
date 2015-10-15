@@ -1,28 +1,29 @@
 import java.util.ArrayList;
 
 public class Scheduler extends Action {
-	
-	private ArrayList<Action> schedulerActions = new ArrayList<Action>();
 
-	public Scheduler(int timeToEnd) {
-		// TODO Auto-generated constructor stub
-	}
+	private ArrayList<Action> schedulerActions = new ArrayList<Action>();
+	private int currentAction = 0;
 
 	@Override
 	public boolean isReady() {
-		// TODO Auto-generated method stub
-		return false;
+		return ((this.schedulerActions.size() > 0)&&(this.schedulerActions.get(0).isReady()));
 	}
 
 	@Override
 	public boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		for (Action a : this.schedulerActions)
+			if ((!a.isFinished()))
+				return false;
+		return true;
 	}
 
 	@Override
 	public void reallyDoStep() {
-		// TODO Auto-generated method stub
+		this.schedulerActions.get(this.currentAction).reallyDoStep();
+		if(this.schedulerActions.get(this.currentAction).isFinished())
+			if(this.currentAction < this.schedulerActions.size()) 
+				this.currentAction++;
 
 	}
 
