@@ -4,7 +4,7 @@ import lille1.pool.exception.ActionAlreadyFinishedException;
 import org.junit.Test;
 
 
-public class FairSchedulerTest extends ActionTest {
+public class FairSchedulerTest extends SchedulerTest {
 	
 	@Test
 	public void onlyOneValidStateAtEachMomentForAction() {
