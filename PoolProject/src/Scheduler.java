@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
-public class Scheduler extends Action {
+public abstract class Scheduler extends Action {
 
-	private ArrayList<Action> schedulerActions = new ArrayList<Action>();
-	private int currentAction = 0;
+	protected ArrayList<Action> schedulerActions = new ArrayList<Action>();
+	protected int currentAction = 0;
 
 	@Override
 	public boolean isReady() {
@@ -19,13 +19,7 @@ public class Scheduler extends Action {
 	}
 
 	@Override
-	public void reallyDoStep() {
-		this.schedulerActions.get(this.currentAction).reallyDoStep();
-		if(this.schedulerActions.get(this.currentAction).isFinished())
-			if(this.currentAction < this.schedulerActions.size()) 
-				this.currentAction++;
-
-	}
+	public abstract void reallyDoStep();
 
 	public void addAction(Action eaction) {
 		this.schedulerActions.add(eaction);
