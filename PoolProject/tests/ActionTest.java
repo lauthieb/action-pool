@@ -1,4 +1,7 @@
 import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 import lille1.pool.exception.ActionAlreadyFinishedException;
 
 public abstract class ActionTest {
@@ -22,5 +25,26 @@ public abstract class ActionTest {
 		assertTrue(eAction.isFinished());
 	}
 	
+	protected Scheduler createScheduler(Action action) {
+		Scheduler scheduler = new SequentialScheduler();
+		scheduler.addAction(action);
+		return scheduler;
+	}
+	
 	public abstract void onlyOneValidStateAtEachMomentForAction();
+	
+	@Test
+	public void withOneStepAction() {
+		OneStepAction action1 = new OneStepAction();
+		Scheduler scheduler = createScheduler(action1);
+		assertFalse(scheduler.isFinished());
+		assertFalse(action1.isFinished());
+		try {
+			scheduler.doStep();
+		} catch (ActionAlreadyFinishedException e) {
+			e.printStackTrace();
+		}
+		assertTrue(scheduler.isFinished());
+		assertTrue(action1.isFinished());
+	}
 }
