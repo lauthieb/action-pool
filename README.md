@@ -1,4 +1,4 @@
-Action - Pool
+action-pool
 =========
 
 Projet de COO en L3 MIAGE.
