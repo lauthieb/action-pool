@@ -1,8 +1,10 @@
+package lille1.action;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import lille1.pool.exception.ActionAlreadyFinishedException;
 
 import org.junit.Test;
+
+import lille1.action.exception.ActionAlreadyFinishedException;
 
 
 public class ForeseeableActionTest extends ActionTest {

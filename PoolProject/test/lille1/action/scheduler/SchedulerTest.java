@@ -1,5 +1,8 @@
+package lille1.action.scheduler;
 import org.junit.Before;
 import org.junit.Test;
+
+import lille1.action.*;
 
 
 public abstract class SchedulerTest extends ActionTest {

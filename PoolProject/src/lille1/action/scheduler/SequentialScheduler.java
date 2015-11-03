@@ -1,3 +1,4 @@
+package lille1.action.scheduler;
 
 public class SequentialScheduler extends Scheduler {
 

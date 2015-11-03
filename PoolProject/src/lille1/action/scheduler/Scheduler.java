@@ -1,4 +1,7 @@
+package lille1.action.scheduler;
 import java.util.ArrayList;
+
+import lille1.action.Action;
 
 public abstract class Scheduler extends Action {
 

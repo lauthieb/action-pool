@@ -1,5 +1,8 @@
+package lille1.action.scheduler;
 import static org.junit.Assert.assertTrue;
-import lille1.pool.exception.ActionAlreadyFinishedException;
+
+import lille1.action.*;
+import lille1.action.exception.ActionAlreadyFinishedException;
 
 import org.junit.Test;
 

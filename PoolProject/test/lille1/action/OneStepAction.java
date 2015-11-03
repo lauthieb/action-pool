@@ -1,3 +1,4 @@
+package lille1.action;
 
 public class OneStepAction extends ForeseeableAction {
 

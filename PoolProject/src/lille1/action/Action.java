@@ -1,4 +1,5 @@
-import lille1.pool.exception.ActionAlreadyFinishedException;
+package lille1.action;
+import lille1.action.exception.ActionAlreadyFinishedException;
 
 public abstract class Action {
 

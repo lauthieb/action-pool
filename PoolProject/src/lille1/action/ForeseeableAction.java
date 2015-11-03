@@ -1,3 +1,4 @@
+package lille1.action;
 public class ForeseeableAction extends Action {
 
 	private final int baseTime;
@@ -10,12 +11,12 @@ public class ForeseeableAction extends Action {
 
 	@Override
 	public boolean isReady() {
-		return (this.baseTime==this.timeRemaining);
+		return (this.baseTime == this.timeRemaining);
 	}
 
 	@Override
 	public boolean isFinished() {
-		return (this.timeRemaining==0);
+		return (this.timeRemaining == 0);
 	}
 
 	@Override

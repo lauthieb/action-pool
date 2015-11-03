@@ -1,8 +1,11 @@
+package lille1.action;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import lille1.pool.exception.ActionAlreadyFinishedException;
+import lille1.action.exception.ActionAlreadyFinishedException;
+import lille1.action.scheduler.Scheduler;
+import lille1.action.scheduler.SequentialScheduler;
 
 public abstract class ActionTest {
 	
