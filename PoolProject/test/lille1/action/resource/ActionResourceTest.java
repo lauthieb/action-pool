@@ -31,6 +31,7 @@ public class ActionResourceTest {
 		assertTrue(this.fra.isReady());
 		assertFalse(this.tra.isFinished());
 		assertTrue(this.tra.isReady());
+		assertNotNull(this.fra.getResourcePool());
 		assertNotNull(this.tra.getResourcePool());
 	}
 }
