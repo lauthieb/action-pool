@@ -42,5 +42,22 @@ public abstract class ResourcePool <T extends Resource>{
 			throw new IllegalArgumentException();
 		}
 	}
+
+	public List<T> getResources() {
+		return resources;
+	}
+
+	public void setResources(List<T> resources) {
+		this.resources = resources;
+	}
+
+	public List<T> getUsedResources() {
+		return usedResources;
+	}
+
+	public void setUsedResources(List<T> usedResources) {
+		this.usedResources = usedResources;
+	}
+
 }
 

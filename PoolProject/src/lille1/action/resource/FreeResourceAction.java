@@ -35,10 +35,9 @@ public class FreeResourceAction<T extends Resource> extends Action {
 			this.resourcePool.freeResource(this.resourcefulUser.getResource());
 			this.resourcefulUser.resetResource();
 			this.ready = true;
-			System.out.println("success");
+			System.out.println("Free success");
 		} catch(IllegalArgumentException e){
-			System.out.println("failed");
-			e.printStackTrace();
+			System.out.println("Free failed");
 		}
 	}
 

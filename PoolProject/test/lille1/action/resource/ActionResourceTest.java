@@ -1,12 +1,11 @@
 package lille1.action.resource;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import lille1.action.exception.ActionFinishedException;
 import lille1.pool.BasketPool;
 import lille1.pool.resource.Basket;
 import lille1.pool.resource.ResourcefulUser;
@@ -34,4 +33,49 @@ public class ActionResourceTest {
 		assertNotNull(this.fra.getResourcePool());
 		assertNotNull(this.tra.getResourcePool());
 	}
+	
+	@Test
+	public void testTakeResourceAction() {
+		assertTrue(this.tra.isReady());
+		assertNull(this.user.getResource());
+		assertEquals(1, this.tra.getResourcePool().getResources().size());
+		assertEquals(0, this.tra.getResourcePool().getUsedResources().size());
+		
+		try {
+			this.tra.doStep();
+		} catch (ActionFinishedException e) {
+			e.printStackTrace();
+		}
+		
+		assertFalse(this.tra.isReady());
+		assertNotNull(this.user.getResource());
+		assertEquals(0, this.tra.getResourcePool().getResources().size());
+		assertEquals(1, this.tra.getResourcePool().getUsedResources().size());
+	}
+	
+	@Test
+	public void testFreeResourceAction() {
+		assertEquals(1, this.tra.getResourcePool().getResources().size());
+		assertEquals(0, this.tra.getResourcePool().getUsedResources().size());
+		
+		try {
+			this.tra.doStep();
+		} catch (ActionFinishedException e) {
+			e.printStackTrace();
+		}
+		
+		assertTrue(this.fra.isReady());
+		assertNotNull(this.user.getResource());
+		
+		try {
+			this.fra.doStep();
+		} catch (ActionFinishedException e) {
+			e.printStackTrace();
+		}
+		
+		assertNull(this.user.getResource());
+		assertEquals(1, this.tra.getResourcePool().getResources().size());
+		assertEquals(0, this.tra.getResourcePool().getUsedResources().size());
+	}
+	
 }
