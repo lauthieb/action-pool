@@ -3,7 +3,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import lille1.action.*;
-import lille1.action.exception.ActionAlreadyFinishedException;
+import lille1.action.exception.ActionFinishedException;
 
 
 public class SequentialSchedulerTest extends SchedulerTest {
@@ -32,7 +32,7 @@ public class SequentialSchedulerTest extends SchedulerTest {
 
 		try {
 			action3.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 
@@ -42,7 +42,7 @@ public class SequentialSchedulerTest extends SchedulerTest {
 
 		try {
 			action3.doStep();
-		} catch (ActionAlreadyFinishedException e1) {
+		} catch (ActionFinishedException e1) {
 			e1.printStackTrace();
 		}
 		assertTrue(action.isFinished());
@@ -51,7 +51,7 @@ public class SequentialSchedulerTest extends SchedulerTest {
 
 		try {
 			action3.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		assertTrue(action2.isInProgress());
@@ -59,7 +59,7 @@ public class SequentialSchedulerTest extends SchedulerTest {
 
 		try {
 			action3.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		assertTrue(action2.isFinished());
@@ -81,7 +81,7 @@ public class SequentialSchedulerTest extends SchedulerTest {
 		
 		try {
 			sequentialScheduler.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		
@@ -91,7 +91,7 @@ public class SequentialSchedulerTest extends SchedulerTest {
 		
 		try {
 			sequentialScheduler.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		

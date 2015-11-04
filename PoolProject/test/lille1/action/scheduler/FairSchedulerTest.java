@@ -2,7 +2,7 @@ package lille1.action.scheduler;
 import static org.junit.Assert.assertTrue;
 
 import lille1.action.*;
-import lille1.action.exception.ActionAlreadyFinishedException;
+import lille1.action.exception.ActionFinishedException;
 
 import org.junit.Test;
 
@@ -33,7 +33,7 @@ public class FairSchedulerTest extends SchedulerTest {
 
 		try {
 			action3.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		
@@ -43,7 +43,7 @@ public class FairSchedulerTest extends SchedulerTest {
 		
 		try {
 			action3.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		
@@ -52,7 +52,7 @@ public class FairSchedulerTest extends SchedulerTest {
 		
 		try {
 			action3.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		
@@ -61,7 +61,7 @@ public class FairSchedulerTest extends SchedulerTest {
 		
 		try {
 			action3.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		
@@ -70,7 +70,7 @@ public class FairSchedulerTest extends SchedulerTest {
 		
 		try {
 			action3.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		

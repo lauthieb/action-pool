@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import lille1.action.exception.ActionAlreadyFinishedException;
+import lille1.action.exception.ActionFinishedException;
 import lille1.action.scheduler.Scheduler;
 import lille1.action.scheduler.SequentialScheduler;
 
@@ -17,7 +17,7 @@ public abstract class ActionTest {
 		while(!eAction.isFinished()) {
 			try {
 				eAction.doStep();
-			} catch (ActionAlreadyFinishedException e) {
+			} catch (ActionFinishedException e) {
 				e.printStackTrace();
 			}
 			assertFalse(eAction.isReady());
@@ -44,10 +44,11 @@ public abstract class ActionTest {
 		assertFalse(action1.isFinished());
 		try {
 			scheduler.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 		assertTrue(scheduler.isFinished());
 		assertTrue(action1.isFinished());
 	}
+	
 }

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import lille1.action.exception.ActionAlreadyFinishedException;
+import lille1.action.exception.ActionFinishedException;
 
 
 public class ForeseeableActionTest extends ActionTest {
@@ -24,7 +24,7 @@ public class ForeseeableActionTest extends ActionTest {
 
 		try {
 			action.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 
@@ -34,7 +34,7 @@ public class ForeseeableActionTest extends ActionTest {
 
 		try {
 			action.doStep();
-		} catch (ActionAlreadyFinishedException e) {
+		} catch (ActionFinishedException e) {
 			e.printStackTrace();
 		}
 

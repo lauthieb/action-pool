@@ -1,4 +1,5 @@
 package lille1.action;
+
 public class ForeseeableAction extends Action {
 
 	private final int baseTime;
@@ -23,6 +24,11 @@ public class ForeseeableAction extends Action {
 	public void reallyDoStep() {
 		if(!(this.isFinished())) this.timeRemaining--; 
 		return;
+	}
+
+	@Override
+	public Action createAction() {
+		return new ForeseeableAction(this.baseTime);
 	}
 
 }
