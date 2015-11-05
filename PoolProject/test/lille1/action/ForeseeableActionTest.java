@@ -43,4 +43,9 @@ public class ForeseeableActionTest extends ActionTest {
 		assertFalse(action.isReady());
 	}
 
+	@Override
+	public Action createAction() {
+		return new ForeseeableAction(2);
+	}
+
 }

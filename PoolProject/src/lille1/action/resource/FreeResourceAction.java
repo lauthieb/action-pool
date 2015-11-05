@@ -41,11 +41,6 @@ public class FreeResourceAction<T extends Resource> extends Action {
 		}
 	}
 
-	@Override
-	public Action createAction() {
-		return new FreeResourceAction<T>(this.resourcePool, this.resourcefulUser);
-	}
-
 	public ResourcePool<T> getResourcePool() {
 		return resourcePool;
 	}

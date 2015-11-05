@@ -1,7 +1,5 @@
 package lille1.action.scheduler;
 
-import lille1.action.Action;
-
 public class FairScheduler extends Scheduler {
 
 	@Override
@@ -17,11 +15,6 @@ public class FairScheduler extends Scheduler {
 			this.currentAction++;
 			this.reallyDoStep();
 		}
-	}
-
-	@Override
-	public Action createAction() {
-		return new FairScheduler();
 	}
 
 }

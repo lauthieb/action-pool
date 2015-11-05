@@ -26,9 +26,4 @@ public class ForeseeableAction extends Action {
 		return;
 	}
 
-	@Override
-	public Action createAction() {
-		return new ForeseeableAction(this.baseTime);
-	}
-
 }

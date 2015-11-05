@@ -99,4 +99,9 @@ public class SequentialSchedulerTest extends SchedulerTest {
 		assertTrue(subSequentialScheduler.isFinished());
 		assertTrue(sequentialScheduler.isFinished());
 	}
+
+	@Override
+	public Action createAction() {
+		return new SequentialScheduler();
+	}
 }

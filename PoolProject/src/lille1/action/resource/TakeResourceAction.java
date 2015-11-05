@@ -44,11 +44,6 @@ public class TakeResourceAction<T extends Resource> extends Action {
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	public Action createAction() {
-		return new TakeResourceAction<T>(this.resourcePool, this.resourcefulUser);
-	}
 	
 	public ResourcePool<T> getResourcePool(){
 		return resourcePool;

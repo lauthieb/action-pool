@@ -79,4 +79,9 @@ public class FairSchedulerTest extends SchedulerTest {
 		assertTrue(sched.isFinished());
 	}
 
+	@Override
+	public Action createAction() {
+		return new FairScheduler();
+	}
+
 }
