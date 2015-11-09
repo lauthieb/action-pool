@@ -37,10 +37,10 @@ public class TakeResourceAction<T extends Resource> extends Action {
 			T res = this.resourcePool.provideResource();
 			this.resourcefulUser.setResource(res);
 			this.ready = false;
-			System.out.println("Take success");
+			System.out.println("success");
 		}
 		catch(NoSuchElementException e){
-			System.out.println("Take failed");
+			System.out.println("failed");
 			e.printStackTrace();
 		}
 	}

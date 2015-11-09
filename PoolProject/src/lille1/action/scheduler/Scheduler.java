@@ -2,6 +2,7 @@ package lille1.action.scheduler;
 import java.util.ArrayList;
 
 import lille1.action.Action;
+import lille1.action.exception.ActionFinishedException;
 
 public abstract class Scheduler extends Action {
 
@@ -22,7 +23,7 @@ public abstract class Scheduler extends Action {
 	}
 
 	@Override
-	public abstract void reallyDoStep();
+	public abstract void reallyDoStep() throws ActionFinishedException;
 
 	public void addAction(Action eaction) {
 		this.schedulerActions.add(eaction);

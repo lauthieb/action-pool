@@ -26,4 +26,18 @@ public class ForeseeableAction extends Action {
 		return;
 	}
 
+	public int getTimeRemaining() {
+		return timeRemaining;
+	}
+
+	public void setTimeRemaining(int timeRemaining) {
+		this.timeRemaining = timeRemaining;
+	}
+
+	public int getBaseTime() {
+		return baseTime;
+	}
+
+	
+	
 }

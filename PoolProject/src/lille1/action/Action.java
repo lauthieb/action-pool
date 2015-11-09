@@ -8,7 +8,7 @@ public abstract class Action {
 
 	public abstract boolean isFinished();
 
-	public abstract void reallyDoStep();
+	public abstract void reallyDoStep() throws ActionFinishedException;
 
 	public boolean isInProgress() {
 		return (!isReady()) && (!isFinished());

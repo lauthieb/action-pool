@@ -1,9 +1,11 @@
 package lille1.action.scheduler;
 
+import lille1.action.exception.ActionFinishedException;
+
 public class FairScheduler extends Scheduler {
 
 	@Override
-	public void reallyDoStep() {
+	public void reallyDoStep() throws ActionFinishedException {
 		if(this.currentAction >= schedulerActions.size()) {
 			this.currentAction = 0;
 		}
