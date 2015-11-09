@@ -41,7 +41,6 @@ public class TakeResourceAction<T extends Resource> extends Action {
 		}
 		catch(NoSuchElementException e){
 			System.out.println("failed");
-			e.printStackTrace();
 		}
 	}
 	
