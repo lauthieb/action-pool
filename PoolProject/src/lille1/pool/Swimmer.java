@@ -27,6 +27,8 @@ public class Swimmer extends Action {
 	protected TakeResourceAction<Cubicle> cubicleTRA;
 	protected FreeResourceAction<Cubicle> cubicleFRA;
 	
+	protected boolean ready;
+	
 	public Swimmer(String name, BasketPool basketPool, CubiclePool cubiclePool, int undressingTime, int swimmingTime, int dressingTime){
 		this.name = name;
 		this.basketPool = basketPool;
@@ -43,11 +45,13 @@ public class Swimmer extends Action {
 		this.basketFRA = new FreeResourceAction<Basket>(basketPool, basketRfU);
 		this.cubicleTRA = new TakeResourceAction<Cubicle>(cubiclePool, cubicleRfU);
 		this.cubicleFRA = new FreeResourceAction<Cubicle>(cubiclePool, cubicleRfU);
+		
+		this.ready = true;
 	}
 
 	@Override
 	public boolean isReady() {
-		return !isFinished();
+		return this.ready;
 	}
 
 	@Override
@@ -58,6 +62,7 @@ public class Swimmer extends Action {
 
 	@Override
 	public void reallyDoStep() throws ActionFinishedException {
+		this.ready = false;
 		System.out.println(getName()+"'s turn");
 		if (basketRfU.getResource() == null){
 			System.out.print(getName()+" trying to take resource from pool basket... ");
@@ -110,4 +115,14 @@ public class Swimmer extends Action {
 	public CubiclePool getCubiclePool(){
 		return cubiclePool;
 	}
+
+	public ResourcefulUser<Basket> getBasketRfU() {
+		return basketRfU;
+	}
+
+	public ResourcefulUser<Cubicle> getCubicleRfU() {
+		return cubicleRfU;
+	}
+	
+	
 }
