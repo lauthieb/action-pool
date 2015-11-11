@@ -5,7 +5,8 @@ import lille1.action.exception.ActionFinishedException;
 /**
  * FairScheduler is a scheduler which execute actions in parallel.
  * It executes an action and goes the next one which is not finished.  
- * @author thibault
+ * 
+ * @author Amelie M., Laurent.T, Thibault.C, Quentin.G.
  *
  */
 public class FairScheduler extends Scheduler {
@@ -19,7 +20,6 @@ public class FairScheduler extends Scheduler {
 		if(this.currentAction >= schedulerActions.size()) {
 			this.currentAction = 0;
 		}
-		
 		if(!this.schedulerActions.get(this.currentAction).isFinished()) {
 			this.schedulerActions.get(this.currentAction).reallyDoStep();
 			this.currentAction++;

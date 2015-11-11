@@ -9,7 +9,12 @@ import lille1.pool.resource.Basket;
 import lille1.pool.resource.Cubicle;
 import lille1.pool.resource.ResourcefulUser;
 
-
+/**
+ * Swimmer is the class to describe a swimmer for a pool with name, basketPool, cubiclePool, actions for undressing, swimming and dressing.
+ * 
+ * @author Amelie M., Laurent.T, Thibault.C, Quentin.G.
+ *
+ */
 public class Swimmer extends Action {
 	protected String name;
 	protected BasketPool basketPool;
@@ -29,6 +34,15 @@ public class Swimmer extends Action {
 	
 	protected boolean ready;
 	
+	/**
+	 * Constructor of a Swimmer.
+	 * @param name
+	 * @param basketPool
+	 * @param cubiclePool
+	 * @param undressingTime
+	 * @param swimmingTime
+	 * @param dressingTime
+	 */
 	public Swimmer(String name, BasketPool basketPool, CubiclePool cubiclePool, int undressingTime, int swimmingTime, int dressingTime){
 		this.name = name;
 		this.basketPool = basketPool;
@@ -49,17 +63,40 @@ public class Swimmer extends Action {
 		this.ready = true;
 	}
 
+	/**
+	 * To know if the action is ready.
+	 * @return true if the action is ready and false if the action is not ready.
+	 */
 	@Override
 	public boolean isReady() {
 		return this.ready;
 	}
 
+	/**
+	 * To know if the action is finished.
+	 * @return true if the action is finished and false if the action is not finished.
+	 */
 	@Override
 	public boolean isFinished() {
 		return this.undressing.isFinished() && this.swimming.isFinished() && this.dressing.isFinished() 
 				&& this.basketRfU.getResource() == null && this.cubicleRfU.getResource() == null;
 	}
 
+	/**
+	 * To really do a step for this action.<br />
+	 * In order:<br/>
+	 * <ul>
+	 * 	<li>Take a basket</li>
+	 * 	<li>Take a cubicle</li>
+	 * 	<li>Check the undressing action</li>
+	 * 	<li>Free a cubicle</li>
+	 * 	<li>Check the swimming action</li>
+	 * 	<li>Take a cubicle</li>
+	 * 	<li>Check the dressing action</li>
+	 * 	<li>Free a cubicle</li>
+	 * 	<li>Free a basket</li>
+	 * </ul>
+	 */
 	@Override
 	public void reallyDoStep() throws ActionFinishedException {
 		this.ready = false;
@@ -79,8 +116,8 @@ public class Swimmer extends Action {
 			}
 		}
 		else if (cubicleRfU.getResource() != null && !swimming.isFinished()){
-			System.out.println(getName()+" freeing resource pool cubicle");
-			cubicleFRA.doStep();		
+			System.out.print(getName()+" freeing resource pool cubicle... ");
+			cubicleFRA.doStep();
 		}
 		else if (!swimming.isFinished()){
 			swimming.doStep();
@@ -95,11 +132,11 @@ public class Swimmer extends Action {
 			System.out.println("dressing "+(dressing.getBaseTime()-dressing.getTimeRemaining())+"/"+dressing.getBaseTime());			
 		}
 		else if (cubicleRfU.getResource() != null && dressing.isFinished()){
-			System.out.println(getName()+" freeing resource pool cubicle");
+			System.out.print(getName()+" freeing resource pool cubicle... ");
 			cubicleFRA.doStep();		
 		}
 		else{
-			System.out.println(getName()+" freeing resource pool basket");
+			System.out.print(getName()+" freeing resource pool basket...");
 			basketFRA.doStep();					
 		}
 	}

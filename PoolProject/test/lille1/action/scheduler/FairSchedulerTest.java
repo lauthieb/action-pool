@@ -6,7 +6,6 @@ import lille1.action.exception.ActionFinishedException;
 
 import org.junit.Test;
 
-
 public class FairSchedulerTest extends SchedulerTest {
 	
 	@Test

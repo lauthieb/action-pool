@@ -3,9 +3,11 @@ import java.util.ArrayList;
 
 import lille1.action.Action;
 import lille1.action.exception.ActionFinishedException;
+
 /**
  * A scheduler gets a set of actions. We can deal with it to make progress these actions.
- * @author thibault
+ * 
+ * @author Amelie M., Laurent.T, Thibault.C, Quentin.G.
  *
  */
 public abstract class Scheduler extends Action {
@@ -28,9 +30,11 @@ public abstract class Scheduler extends Action {
 	 */
 	@Override
 	public boolean isFinished() {
-		for (Action a : this.schedulerActions)
-			if ((!a.isFinished()))
+		for (Action a : this.schedulerActions) {
+			if ((!a.isFinished())) {
 				return false;
+			}
+		}
 		return true;
 	}
 
@@ -41,8 +45,8 @@ public abstract class Scheduler extends Action {
 	 * Add an action to the set of actions of the scheduler
 	 * @param eaction the action to add
 	 */
-	public void addAction(Action eaction) {
-		this.schedulerActions.add(eaction);
+	public void addAction(Action action) {
+		this.schedulerActions.add(action);
 	}
 
 }

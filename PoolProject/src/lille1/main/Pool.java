@@ -6,6 +6,12 @@ import lille1.pool.BasketPool;
 import lille1.pool.CubiclePool;
 import lille1.pool.Swimmer;
 
+/**
+ * Pool is the main class of the project to simulate a real pool.
+ * 
+ * @author Amelie M., Laurent.T, Thibault.C, Quentin.G.
+ *
+ */
 public class Pool {
 	public static void main(String[] args) throws ActionFinishedException {
 		BasketPool baskets = new BasketPool(6);

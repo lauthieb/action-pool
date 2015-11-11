@@ -6,12 +6,22 @@ import java.util.NoSuchElementException;
 
 import lille1.pool.resource.Resource;
 
+/**
+ * ResourcePool is the abstract class to describe a resource pool with available and used resources.
+ * 
+ * @author Amelie M., Laurent.T, Thibault.C, Quentin.G.
+ *
+ */
 public abstract class ResourcePool <T extends Resource>{
 	
 	protected int nbResources;
 	protected List<T> availableResources;
 	protected List<T> usedResources = new ArrayList<T>();
 	
+	/**
+	 * Constructor of a ResourcePool
+	 * @param nbResources
+	 */
 	public ResourcePool(int nbResources) {
 		this.nbResources = nbResources;
 		this.availableResources = new ArrayList<T>();
@@ -20,8 +30,16 @@ public abstract class ResourcePool <T extends Resource>{
 		}
 	}
 	
+	/**
+	 * Defined on each subclass to create the resource.
+	 * @return
+	 */
 	protected abstract T create();
 	
+	/**
+	 * Called when the user want to provide a resource.
+	 * @return T the resource
+	 */
 	public T provideResource() {
 		if (!availableResources.isEmpty()){
 			T tmp = availableResources.get(0);
@@ -33,6 +51,10 @@ public abstract class ResourcePool <T extends Resource>{
 		}
 	}
 	
+	/**
+	 * Called when the user want to free a resource.
+	 * @return T the resource
+	 */
 	public void freeResource(T resource) {
 		if (usedResources.contains(resource)){
 			availableResources.add(resource);

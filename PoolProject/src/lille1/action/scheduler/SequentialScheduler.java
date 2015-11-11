@@ -3,8 +3,9 @@ package lille1.action.scheduler;
 import lille1.action.exception.ActionFinishedException;
 
 /**
- * SequentialSchedulder is a scheduler which ends the started action before going to the next one
- * @author thibault
+ * SequentialSchedulder is a scheduler which ends the started action before going to the next one.
+ * 
+ * @author Amelie M., Laurent.T, Thibault.C, Quentin.G.
  *
  */
 public class SequentialScheduler extends Scheduler {
@@ -16,8 +17,10 @@ public class SequentialScheduler extends Scheduler {
 	@Override
 	public void reallyDoStep() throws ActionFinishedException {
 		this.schedulerActions.get(this.currentAction).reallyDoStep();
-		if(this.schedulerActions.get(this.currentAction).isFinished())
-			if(this.currentAction < this.schedulerActions.size()-1) 
+		if(this.schedulerActions.get(this.currentAction).isFinished()) {
+			if(this.currentAction < this.schedulerActions.size()-1)  {
 				this.currentAction++;
+			}
+		}
 	}
 }
